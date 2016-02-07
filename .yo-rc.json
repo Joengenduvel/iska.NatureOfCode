@@ -1,0 +1,9 @@
+{
+  "generator-reveal-infosupport": {
+    "presentationTitle": "Nature of Code",
+    "packageVersion": "0.0.0",
+    "deployToGithubPages": true,
+    "githubUsername": "joengenduvel",
+    "githubRepository": "iska.NatureOfCode"
+  }
+}

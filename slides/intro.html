@@ -1,0 +1,14 @@
+<h2>Intro</h2>
+<p id="acceleration-x">acceleration x</p>
+
+<p>Please change me!</p>
+<script type="text/javascript">
+    function motionEvent(event){
+        document.getElementById("acceleration-x").innerHTML = event.accelerationIncludingGravity.x;
+    }
+
+    //register the event listener
+    if (window.DeviceMotionEvent != undefined) {
+        window.ondevicemotion = motionEvent;
+    }
+</script>
