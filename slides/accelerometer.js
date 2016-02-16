@@ -46,9 +46,9 @@ window.setInterval(randomMotion(), 500);
 
 function updateLabels(x,y,z){
     console.log("updating labels", x, y, z);
-    document.getElementById("acceleration-x").innerHTML = x
-    document.getElementById("acceleration-y").innerHTML = x
-    document.getElementById("acceleration-z").innerHTML = x
+    document.getElementById("acceleration-x").innerHTML = x;
+    document.getElementById("acceleration-y").innerHTML = y;
+    document.getElementById("acceleration-z").innerHTML = z;
 }
 
 Reveal.addEventListener( 'slidechanged', function( event ) {
