@@ -1,14 +1,10 @@
 <h2>Intro</h2>
+<label for="acceleration-x">acceleration x</label>
 <p id="acceleration-x">acceleration x</p>
+<label for="acceleration-y">acceleration y</label>
+<p id="acceleration-y">acceleration y</p>
+<label for="acceleration-z">acceleration z</label>
+<p id="acceleration-z">acceleration z</p>
 
 <p>Please change me!</p>
-<script type="text/javascript">
-    function motionEvent(event){
-        document.getElementById("acceleration-x").innerHTML = event.accelerationIncludingGravity.x;
-    }
 
-    //register the event listener
-    if (window.DeviceMotionEvent != undefined) {
-        window.ondevicemotion = motionEvent;
-    }
-</script>
