@@ -53,7 +53,7 @@
                 <% }); %>
             </div>
         </div>
-        <div style="position: absolute; top: 0; width: 100%;">
+        <div style="position: absolute; top: 0; left:0; width: 100%;">
             <button onclick="randomMotion()">move!</button>
             <div id="page-log" style="height: 100px; overflow: auto;"></div>
         </div>
@@ -80,12 +80,39 @@
               { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( '[data-html]' ) || !!document.querySelector( 'pre code' ) || !!document.querySelector( '[data-markdown]' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
               { src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true },
               { src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true },
-              { src: 'js/loadhtmlslides.js', condition: function() { return !!document.querySelector( '[data-html]' ); } }
+              { src: 'js/loadhtmlslides.js', condition: function() { return !!document.querySelector( '[data-html]' ); } },
+              { src: 'slides/require.js'}
             ]
           });
 
         </script>
-        <script src="slides/accelerometer.js"></script>
+        <script>
+            function logToPage(){
+                var  logLine = document.createElement("div");
+                for(var i = 0; i<arguments.length; i++){
+                    logLine.appendChild(document.createTextNode(arguments[i] + ", "));
+                }
+                var log = document.getElementById("page-log");
+                log.appendChild(logLine);
+                log.scrollTop = log.scrollHeight - log.clientHeight;
+            }
+                //console.log = logToPage;
+
+
+            Reveal.addEventListener( 'ready', function( event ) {
+                requirejs.config({
+                    baseUrl: 'js',
+                    paths: {
+                        app: '../app'
+                    }
+                });
+                requirejs(['loader'], function(slideChanged){
+                    //make sure te correct actions are loaded.
+                    slideChanged(event);
+                });
+            } );
+
+        </script>
     </body>
 
 </html>

@@ -1,15 +1,3 @@
-function logToPage(){
-    var  logLine = document.createElement("div");
-    for(var i = 0; i<arguments.length; i++){
-        logLine.appendChild(document.createTextNode(arguments[i] + ", "));
-    }
-    var log = document.getElementById("page-log");
-    log.appendChild(logLine);
-    log.scrollTop = log.scrollHeight - log.clientHeight;
-}
-
-console.log = logToPage;
-
 function MotionHandler() {
     var listeners = [];
     this.onDeviceMove = function (e) {
@@ -51,16 +39,5 @@ function updateLabels(x,y,z){
     document.getElementById("acceleration-z").innerHTML = z;
 }
 
-Reveal.addEventListener( 'slidechanged', function( event ) {
-    console.log(event.indexh, event.indexv);
-    switch (event.indexh){
-        case 1:
-            motionHandler.clearListeners();
-            motionHandler.register(updateLabels);
-            break;
-        default:
-            motionHandler.clearListeners();
 
-    }
-} );
 

@@ -31,6 +31,6 @@
     "commit": "0206b5fde5c44b517b1c5c729784ca910d04c113"
   },
   "_source": "git://github.com/riezebosch/reveal.js-theme-infosupport.git",
-  "_target": "~0.0.1",
+  "_target": "0.x.x",
   "_originalSource": "reveal.js-theme-infosupport"
 }

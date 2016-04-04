@@ -2,8 +2,8 @@
   "name": "nature-of-code",
   "version": "0.0.0",
   "dependencies": {
-    "reveal.js": "~3.2.0",
-    "highlightjs": "~9.0.0",
-    "reveal.js-theme-infosupport": "~0.0.1"
+    "reveal.js": "3.x.x",
+    "highlightjs": "9.x.x",
+    "reveal.js-theme-infosupport": "0.x.x"
   }
 }

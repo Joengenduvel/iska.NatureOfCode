@@ -1,6 +1,7 @@
-node_modules
-dist
+/node_modules
+/bower_components
 *.log
-.sass-cache
 
-.idea
+#IDE ignores
+/.idea
+/iska.NatureOfCode.iml
