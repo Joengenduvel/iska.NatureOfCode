@@ -15,6 +15,11 @@
                         script.start();
                     });
                     break;
+                case 3:
+                    require(['do-the-locomotion'], function(script) {
+                        script.start();
+                    });
+                    break;
                 default:
                 //motionHandler.clearListeners();
 
