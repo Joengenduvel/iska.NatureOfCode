@@ -1,10 +1,10 @@
 (function(){
     'use strict';
 
-    /*global document */
+    /*global window */
     /*global define */
     define(function () {
-        var slideContainer = document.getElementsByClassName('slides')[0];
+        var slideContainer = window.document.getElementsByClassName('slides')[0];
 
         return {
             width: (function(){
@@ -12,7 +12,8 @@
             }()),
             height: (function(){
                 return slideContainer.clientHeight;
-            }())
+            }()),
+            window: window
         };
     });
 

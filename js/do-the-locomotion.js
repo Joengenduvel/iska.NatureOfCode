@@ -1,36 +1,28 @@
 (function () {
     'use strict';
 
-    /*global document */
     /*global Reveal */
     /*global define*/
     define(function (require) {
-        var canvas = document.getElementById('locomotionCanvas');
+        var NUMBER_OF_ENEMIES = 10;
+        var SHIP_SIZE = 20;
+        var MOVEMENT_AMOUNT = 10;
+
         var environment = require('environment');
+        var canvas = environment.window.document.getElementById('locomotionCanvas');
         var ctx = canvas.getContext('2d');
+        var Triangle = require('triangle');
+
+        var controls = require('controls');
+
+        var enemies = [];
+        var me;
+
 
         function makeFullScreen(canvas) {
             canvas.width = environment.width;
             canvas.height = environment.height;
             Reveal.layout();
-        }
-
-        function draw(x, y, angle, size, solid) {
-            var halfSize = size / 2;
-            ctx.save();
-            ctx.beginPath();
-            ctx.translate(x, y);
-            ctx.rotate(angle);
-            ctx.moveTo(0, -halfSize);
-            ctx.lineTo(halfSize, halfSize);
-            ctx.lineTo(-halfSize, halfSize);
-            ctx.lineTo(0, -halfSize);
-            if (solid) {
-                ctx.fill();
-            } else {
-                ctx.stroke();
-            }
-            ctx.restore();
         }
 
         function anglePart(n, m) {
@@ -41,23 +33,56 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
+        function drawWorld() {
+            makeFullScreen(canvas);
+            clearCanvas();
+            enemies.forEach(function (enemy) {
+                enemy.draw(ctx);
+                enemy.y += MOVEMENT_AMOUNT/10;
+            });
+            me.draw(ctx);
+            environment.window.requestAnimationFrame(drawWorld);
+        }
+
+        function moveLeft() {
+            enemies.forEach(function (enemy) {
+                enemy.x -= MOVEMENT_AMOUNT;
+            });
+        }
+
+
+        function moveRight() {
+            enemies.forEach(function (enemy) {
+                enemy.x += MOVEMENT_AMOUNT;
+            });
+        }
+
 
         return {
             start: function () {
-                makeFullScreen(canvas);
-                clearCanvas();
-                draw(environment.width / 2, environment.height - 20, 0, 10);
-                draw(10, 10, anglePart(0, 10), 10, true);
-                draw(30, 10, anglePart(1, 10), 11, true);
-                draw(50, 10, anglePart(2, 10), 12, true);
-                draw(70, 10, anglePart(3, 10), 13, true);
-                draw(90, 10, anglePart(4, 10), 14, true);
-                draw(110, 10, anglePart(5, 10), 15, true);
-                draw(130, 10, anglePart(6, 10), 16, true);
-                draw(150, 10, anglePart(7, 10), 17, true);
-                draw(170, 10, anglePart(8, 10), 18, true);
-                draw(190, 10, anglePart(9, 10), 19, true);
-                draw(210, 10, anglePart(10, 10), 20, true);
+
+                controls.enable();
+                for (var i = 0; i < NUMBER_OF_ENEMIES; i++) {
+                    enemies.push(
+                        new Triangle(
+                            Math.random() * environment.width,
+                            Math.random() * environment.height,
+                            anglePart(Math.random() * NUMBER_OF_ENEMIES, NUMBER_OF_ENEMIES),
+                            true,
+                            SHIP_SIZE
+                        ));
+                }
+                me = new Triangle(
+                    environment.width / 2,
+                    environment.height - (SHIP_SIZE * 2),
+                    0,
+                    false,
+                    SHIP_SIZE
+                );
+                controls.registerLeft(moveLeft);
+                controls.registerRight(moveRight);
+
+                environment.window.requestAnimationFrame(drawWorld);
             }
         };
     });
