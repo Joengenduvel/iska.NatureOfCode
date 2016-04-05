@@ -20,6 +20,11 @@
                         script.start();
                     });
                     break;
+                case 4:
+                    require(['hey-mister-vector'], function(script) {
+                        script.start();
+                    });
+                    break;
                 default:
                 //motionHandler.clearListeners();
 
