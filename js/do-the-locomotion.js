@@ -6,7 +6,7 @@
     define(function (require) {
         var NUMBER_OF_ENEMIES = 10;
         var SHIP_SIZE = 20;
-        var MOVEMENT_AMOUNT = 10;
+        var MOVEMENT_AMOUNT = 5;
 
         var environment = require('environment');
         var canvas = environment.window.document.getElementById('locomotionCanvas');
