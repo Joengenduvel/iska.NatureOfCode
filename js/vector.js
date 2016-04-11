@@ -23,6 +23,23 @@
             this.add = function(vector){
                 this.x += vector.x;
                 this.y += vector.y;
+                return this;
+            };
+
+            this.multiply = function (a) {
+                this.x *= a;
+                this.y *= a;
+                return this;
+            };
+
+            this.substract = function (vector){
+                this.x -= vector.x;
+                this.y -= vector.y;
+                return this;
+            };
+
+            this.magnitude = function(){
+                return Math.sqrt(this.x*this.x + this.y*this.y);
             };
         };
     });

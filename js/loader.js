@@ -25,6 +25,11 @@
                         script.start();
                     });
                     break;
+                case 5:
+                    require(['collision'], function(script) {
+                        script.start();
+                    });
+                    break;
                 default:
                 //motionHandler.clearListeners();
 
