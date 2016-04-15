@@ -1,6 +1,7 @@
 (function(){
     'use strict';
 
+    /*global Reveal */
     /*global window */
     /*global define */
     define(function () {
@@ -13,7 +14,8 @@
             height: (function(){
                 return slideContainer.clientHeight;
             }()),
-            window: window
+            window: window,
+            reveal: Reveal
         };
     });
 

@@ -30,6 +30,11 @@
                         script.start();
                     });
                     break;
+                case 6:
+                    require(['accelerate'], function(script) {
+                        script.start();
+                    });
+                    break;
                 default:
                 //motionHandler.clearListeners();
 
