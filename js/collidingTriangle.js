@@ -10,13 +10,14 @@
             this.velocity = velocityV;
             this.solid = solid;
             this.halfSize = size/2;
+            this.angle = Math.atan2(this.velocity.y,this.velocity.x);
 
             this.draw =function (context){
                 context.save();
                 context.beginPath();
                 context.translate(this.location.x, this.location.y);
                 this.velocity.draw(context, 50);
-                context.rotate(Math.atan2(this.velocity.y,this.velocity.x));
+                context.rotate(this.angle);
                 context.moveTo(-this.halfSize, -this.halfSize);
                 context.lineTo(this.halfSize, 0);
                 context.lineTo(-this.halfSize, this.halfSize);
