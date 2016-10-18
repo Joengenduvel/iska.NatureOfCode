@@ -3,20 +3,22 @@
 
     /*global define*/
     define(function (require) {
-        var NUMBER_OF_ENEMIES = 10;
-        var SHIP_SIZE = 20;
-        var MOVEMENT_AMOUNT = 1;
+        var NUMBER_OF_ENEMIES = 20;
+        var SHIP_SIZE = 40;
+        var MOVEMENT_AMOUNT = 5;
 
         var environment = require('environment');
         var Canvas = require('canvas');
         var canvas = new Canvas('accelerateCanvas');
-        var Triangle = require('collidingTriangle');
+        var Triangle = require('acceleratingTriangle');
         var Vector = require('vector');
 
         var controls = require('controls');
 
         var enemies = [];
         var me;
+        var forceToLeftVector = new Vector(-MOVEMENT_AMOUNT,0);
+        var forceToRightVector = new Vector(MOVEMENT_AMOUNT,0);
 
         function applyMovement(object) {
             object.location.add(object.velocity);
@@ -44,9 +46,10 @@
             for(var i =0;i< enemies.length; i++){
                 enemies[i].draw(canvas.context);
                 applyMovement(enemies[i]);
-                var collisionObjects = enemies.slice();
-                collisionObjects.splice(i,1);
-                enemies[i].detectCollision(collisionObjects);
+                    var collisionObjects = enemies.slice();
+                    collisionObjects.splice(i,1);
+                    enemies[i].detectCollision(collisionObjects);
+
             }
 
             me.draw(canvas.context);
@@ -57,14 +60,14 @@
 
         function moveLeft() {
             enemies.forEach(function (enemy) {
-                enemy.location.x -= MOVEMENT_AMOUNT;
+                enemy.applyForce(forceToLeftVector);
             });
         }
 
 
         function moveRight() {
             enemies.forEach(function (enemy) {
-                enemy.location.x += MOVEMENT_AMOUNT;
+                enemy.applyForce(forceToRightVector);
             });
         }
 
@@ -80,7 +83,7 @@
                         new Triangle(enemyPosition,
                             enemyVelocity,
                             true,
-                            SHIP_SIZE
+                            (Math.random() * SHIP_SIZE / 2) + SHIP_SIZE / 2
                         ));
                 }
                 var mePosition = new Vector(

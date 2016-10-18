@@ -7,6 +7,13 @@
             this.x = x;
             this.y =y;
 
+            this.copy = function(){
+                var copy = new this.constructor();
+                copy.x = this.x;
+                copy.y = this.y;
+                return copy;
+            };
+
             this.draw =function (context, magnification){
                 if(!magnification){
                     magnification = 1;
@@ -41,7 +48,14 @@
             this.magnitude = function(){
                 return Math.sqrt(this.x*this.x + this.y*this.y);
             };
+
+            this.normalize = function(){
+                var magnitude = this.magnitude();
+                if(magnitude !== 0){
+                    this.multiply(1/magnitude);
+                }
+                return this;
+            }
         };
     });
-
 }());
