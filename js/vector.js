@@ -55,7 +55,7 @@
                     this.multiply(1/magnitude);
                 }
                 return this;
-            }
+            };
         };
     });
 }());

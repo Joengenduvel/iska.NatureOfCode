@@ -39,12 +39,12 @@
 
             this.applyForce = function(forceVector){
                 var force = forceVector.copy();
-                console.log('applying force', force);
+                //console.log('applying force', force);
                 force.multiply(1/mass);
-                console.log('applying weighed force', force);
-                console.log('velocity', this.velocity);
+                //console.log('applying weighed force', force);
+                //console.log('velocity', this.velocity);
                 this.velocity.add(force);
-                console.log('velocity result', this.velocity);
+                //console.log('velocity result', this.velocity);
                 this.angle = Math.atan2(this.velocity.y,this.velocity.x);
             };
 
